@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="qy08tghp4ew39nwq_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:uApplicationController.TApplicationController">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:uApplicationController.@unitclass">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="o1xnxpjvy7s_v">
+    <property name="$metaclass" value="Class Diagram" />
+    <property name="$name" value="Class Diagram" />
+    <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:fMain.TForm1">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="140,280,94,81" />
+      <property name="location_set_by_user" value="True" />
+    </reference>
+  </view>
+</nodeSet>

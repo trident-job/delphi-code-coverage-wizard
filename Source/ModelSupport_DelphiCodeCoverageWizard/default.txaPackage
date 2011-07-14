@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <node uin="ndrmhms0w071sv1yn_n">
+    <property name="$description" value="The EXE application." />
+    <property name="$metaclass" value="System Boundary" />
+    <property name="$name" value="DelphiCodeCoverageWizard" />
+    <node uin="6zertmbgvrjgp1dll_n">
+      <property name="$metaclass" value="Use Case" />
+      <property name="$name" value="Get Coverage" />
+      <property name="$normal_flow" value="The user click on 'Get coverage'.&#xD;&#xA;He fills the delphi project source folder, the location of *.map and *.exe files.&#xD;&#xA;He clicks OK." />
+      <property name="@postconditions" value="DelphiCodeCoverage is executed and a coverage report is produced." />
+      <property name="@preconditions" value="A Delphi project with source code, mapping and executable file exists." />
+      <link uin="47bmiale4fo_l">
+        <property name="$metaclass" value="Association Link" />
+        <property name="$name" value="Association Link1" />
+        <property name="@stereotype" value="communicate" />
+        <participant referencedUin="design:node:::6zertmbgvrjgp1dll_n:ndrmhms0w071sv1yn_n" role="Client" />
+        <participant referencedUin="design:node:::i6hb6czwcm0p8pndl_n" role="Supplier" />
+      </link>
+    </node>
+    <node uin="awe622mvknrpqqphl_n">
+      <property name="$metaclass" value="Use Case" />
+      <property name="$name" value="Generate scripts" />
+      <property name="$normal_flow" value="The user click on 'Generate scripts'&#xD;&#xA;He fills the delphi project source folder, the location of *.map and *.exe files.&#xD;&#xA;He clicks OK and get the result." />
+      <property name="@postconditions" value="A batch file and two *.lst files are created.&#xD;&#xA;The batch can execute DelphiCodeCoverage automatically to gather coverage." />
+      <property name="@preconditions" value="A Delphi project with source code, mapping and executable file exists." />
+    </node>
+    <node uin="0togbybc06k_n">
+      <property name="$metaclass" value="Use Case" />
+      <property name="$name" value="Manage covered unit" />
+      <property name="$normal_flow" value="The user select to unit to bypass.&#xD;&#xA;He clicks ok." />
+      <property name="@postconditions" value="Some units in the Delphi project are marked 'bypassed' for the coverage analysis.&#xD;&#xA;" />
+      <property name="@preconditions" value="A project is created inside DelphiCodeCoverageWizard." />
+    </node>
+  </node>
+  <node uin="i6hb6czwcm0p8pndl_n">
+    <property name="$description" value="The Delphi developper would like to use DelphiCodeCoverage more easily with a windows user interface." />
+    <property name="$metaclass" value="Actor" />
+    <property name="$name" value="Developper" />
+    <link uin="t68blvvjuyq_l">
+      <property name="$metaclass" value="Generalization Link" />
+      <property name="$name" value="Generalization Link1" />
+      <participant referencedUin="design:node:::i6hb6czwcm0p8pndl_n" role="Client" />
+      <participant referencedUin="design:node:::porlozgyuwdkytogm_n" role="Supplier" />
+    </link>
+    <link uin="iuztq0h335k_l">
+      <property name="$metaclass" value="Association Link" />
+      <property name="$name" value="Association Link1" />
+      <property name="@stereotype" value="communicate" />
+      <participant referencedUin="design:node:::i6hb6czwcm0p8pndl_n" role="Client" />
+      <participant referencedUin="design:node:::0togbybc06k_n:ndrmhms0w071sv1yn_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="porlozgyuwdkytogm_n">
+    <property name="$description" value="Continuous integration master.&#xD;&#xA;He wants to integrate this delphi application inside a continuous integration framework." />
+    <property name="$metaclass" value="Actor" />
+    <property name="$name" value="CI master" />
+    <link uin="0vv7i00ibss_l">
+      <property name="$metaclass" value="Association Link" />
+      <property name="$name" value="Association Link1" />
+      <property name="@stereotype" value="communicate" />
+      <participant referencedUin="design:node:::porlozgyuwdkytogm_n" role="Client" />
+      <participant referencedUin="design:node:::awe622mvknrpqqphl_n:ndrmhms0w071sv1yn_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="bedoovrtfzf_n">
+    <property name="$metaclass" value="Interaction Container" />
+    <property name="$name" value="Interaction container1" />
+  </node>
+</nodeSet>

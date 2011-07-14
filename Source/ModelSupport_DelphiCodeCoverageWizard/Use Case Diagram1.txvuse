@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="n9hxsqyg8r1bdkitj_v">
+    <property name="$metaclass" value="Use Case Diagram" />
+    <property name="$name" value="Use Case Diagram1" />
+    <reference referencedUin="design:node:::ndrmhms0w071sv1yn_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="background_color" value="200, 200, 200" />
+      <property name="bounds" value="300,200,440,355" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:node:::6zertmbgvrjgp1dll_n:ndrmhms0w071sv1yn_n">
+        <property name="bounds" value="160,159,134,32" />
+        <property name="location_set_by_user" value="True" />
+        <reference referencedUin="design:link:::47bmiale4fo_l:6zertmbgvrjgp1dll_n:ndrmhms0w071sv1yn_n">
+          <property name="sourceAnchor" value="472,405" />
+          <property name="targetAnchor" value="180,455" />
+          <property name="bendpoints" value="" />
+          <reference referencedUin="label:$associationRoleClientInplace:design:link:::47bmiale4fo_l:6zertmbgvrjgp1dll_n:ndrmhms0w071sv1yn_n">
+            <property name="bounds" value="440,413,12,16" />
+          </reference>
+          <reference referencedUin="label:$associationRoleSupplierInplace:design:link:::47bmiale4fo_l:6zertmbgvrjgp1dll_n:ndrmhms0w071sv1yn_n">
+            <property name="bounds" value="190,456,12,16" />
+          </reference>
+        </reference>
+      </reference>
+      <reference referencedUin="design:node:::awe622mvknrpqqphl_n:ndrmhms0w071sv1yn_n">
+        <property name="bounds" value="140,79,155,32" />
+        <property name="location_set_by_user" value="True" />
+      </reference>
+      <reference referencedUin="design:node:::0togbybc06k_n:ndrmhms0w071sv1yn_n">
+        <property name="bounds" value="140,239,190,32" />
+        <property name="location_set_by_user" value="True" />
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::i6hb6czwcm0p8pndl_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="100,420,80,86" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="design:link:::t68blvvjuyq_l:i6hb6czwcm0p8pndl_n">
+        <property name="sourceAnchor" value="150,420" />
+        <property name="targetAnchor" value="150,326" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="design:link:::iuztq0h335k_l:i6hb6czwcm0p8pndl_n">
+        <property name="sourceAnchor" value="180,476" />
+        <property name="targetAnchor" value="440,476" />
+        <property name="bendpoints" value="" />
+        <reference referencedUin="label:$associationRoleClientInplace:design:link:::iuztq0h335k_l:i6hb6czwcm0p8pndl_n">
+          <property name="bounds" value="190,479,12,16" />
+        </reference>
+        <reference referencedUin="label:$associationRoleSupplierInplace:design:link:::iuztq0h335k_l:i6hb6czwcm0p8pndl_n">
+          <property name="bounds" value="418,479,12,16" />
+        </reference>
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::porlozgyuwdkytogm_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="120,240,70,86" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="design:link:::0vv7i00ibss_l:porlozgyuwdkytogm_n">
+        <property name="sourceAnchor" value="190,313" />
+        <property name="targetAnchor" value="441,313" />
+        <property name="bendpoints" value="" />
+        <reference referencedUin="label:$associationRoleClientInplace:design:link:::0vv7i00ibss_l:porlozgyuwdkytogm_n">
+          <property name="bounds" value="200,316,12,16" />
+        </reference>
+        <reference referencedUin="label:$associationRoleSupplierInplace:design:link:::0vv7i00ibss_l:porlozgyuwdkytogm_n">
+          <property name="bounds" value="419,316,12,16" />
+        </reference>
+      </reference>
+    </reference>
+  </view>
+</nodeSet>

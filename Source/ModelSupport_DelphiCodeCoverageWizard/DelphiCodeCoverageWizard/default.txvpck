@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="1ybc7krzpr1m6al2h_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:DelphiCodeCoverageWizard.@unitclass">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="7k3x5h8e4fn_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::1ybc7krzpr1m6al2h_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:DelphiCodeCoverageWizard.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::a5awvw44tt122tp1o_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:fMain.TForm1" />
+      <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:fMain.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::n9hxsqyg8r1bdkitj_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="design:view:::o1xnxpjvy7s_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="design:view:::qy08tghp4ew39nwq_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="@__package_fqn" value="uApplicationController" />
+      <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:uApplicationController.TApplicationController" />
+      <reference referencedUin="delphi:e_class:src:DelphiCodeCoverageWizard:uApplicationController.@unitclass" />
+    </reference>
+  </view>
+</nodeSet>
