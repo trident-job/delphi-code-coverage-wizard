@@ -441,7 +441,7 @@ Mozilla Public License 1.1
 	</Permissions>
 	<ASP>
 		<ASP_FORM>Y</ASP_FORM>
-		<ASP_Member>Y</ASP_Member>
-		<ASP_Member_Number>90502965</ASP_Member_Number>
+		<ASP_Member>N</ASP_Member>
+		<ASP_Member_Number />
 	</ASP>
 </XML_DIZ_INFO>
