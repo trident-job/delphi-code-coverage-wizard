@@ -53,6 +53,8 @@
 			<DCCReference Include="fWizard.pas">
 				<Form>WizardForm</Form>
 			</DCCReference>
+			<DCCReference Include="uApplicationController.pas"/>
+			<DCCReference Include="uProjectSettings.pas"/>
 			<None Include="ModelSupport_DelphiCodeCoverageWizard\default.txaPackage"/>
 			<None Include="ModelSupport_DelphiCodeCoverageWizard\default.txvpck"/>
 			<None Include="ModelSupport_DelphiCodeCoverageWizard\Use Case Diagram1.txvuse"/>

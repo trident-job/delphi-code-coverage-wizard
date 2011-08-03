@@ -2,7 +2,9 @@ program DelphiCodeCoverageWizard;
 
 uses
   Forms,
-  fWizard in 'fWizard.pas' {WizardForm};
+  fWizard in 'fWizard.pas' {WizardForm},
+  uApplicationController in 'uApplicationController.pas',
+  uProjectSettings in 'uProjectSettings.pas';
 
 {$R *.res}
 

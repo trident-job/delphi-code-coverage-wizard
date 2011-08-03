@@ -1,6 +1,7 @@
 object WizardForm: TWizardForm
   Left = 0
   Top = 0
+  ActiveControl = editScriptOutput
   Caption = 'WizardForm'
   ClientHeight = 438
   ClientWidth = 653
@@ -19,7 +20,7 @@ object WizardForm: TWizardForm
     Top = 0
     Width = 653
     Height = 438
-    ActivePage = JvWizardSettingsPage
+    ActivePage = JvWizardOutputPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -46,7 +47,6 @@ object WizardForm: TWizardForm
     ShowRouteMap = True
     OnCancelButtonClick = JvWizard1CancelButtonClick
     OnHelpButtonClick = JvWizard1HelpButtonClick
-    ExplicitWidth = 703
     DesignSize = (
       653
       438)
@@ -73,7 +73,6 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardWelcomePage'
       WaterMark.Visible = False
-      ExplicitWidth = 558
       object imageWelcome: TJvImage
         Left = 6
         Top = 80
@@ -2162,7 +2161,7 @@ object WizardForm: TWizardForm
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
       Header.Subtitle.Text = 
-        'Here you will select the delphi executable application you want ' +
+        'Here you will select the Delphi executable application you want ' +
         'to analyze.'
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
@@ -2174,7 +2173,6 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardExecutablePage'
       OnNextButtonClick = JvWizardExecutablePageNextButtonClick
-      ExplicitWidth = 558
       object JvLabel3: TJvLabel
         Left = 24
         Top = 93
@@ -2249,7 +2247,6 @@ object WizardForm: TWizardForm
       EnabledButtons = [bkStart, bkBack, bkNext, bkCancel, bkHelp]
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardSource'
-      ExplicitWidth = 558
       object JvLabel1: TJvLabel
         Left = 24
         Top = 101
@@ -2295,6 +2292,7 @@ object WizardForm: TWizardForm
         Top = 168
         Width = 473
         Height = 169
+        OnClickCheck = lbSelectedFilesForCoverageClickCheck
         ItemHeight = 13
         TabOrder = 1
       end
@@ -2322,7 +2320,6 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardOutputPage'
       OnNextButtonClick = JvWizardOutputPageNextButtonClick
-      ExplicitWidth = 558
       object JvLabel5: TJvLabel
         Left = 24
         Top = 101
@@ -2371,6 +2368,7 @@ object WizardForm: TWizardForm
         Width = 473
         Height = 21
         AcceptFiles = False
+        OnAfterDialog = editCoverageReportAfterDialog
         DialogKind = dkWin32
         DialogText = 'Select folder to put DelphiCodeCoverage report'
         DialogOptions = [sdAllowCreate, sdPerformCreate]
@@ -2399,7 +2397,6 @@ object WizardForm: TWizardForm
       EnabledButtons = [bkStart, bkBack, bkNext, bkCancel, bkHelp]
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardSettingsPage'
-      ExplicitLeft = 151
       object labelExecutablePathReminder: TJvLabel
         Left = 56
         Top = 159
@@ -2411,7 +2408,6 @@ object WizardForm: TWizardForm
         FrameColor = clWindow
         ParentColor = False
         Transparent = True
-        Visible = False
         HotTrackFont.Charset = DEFAULT_CHARSET
         HotTrackFont.Color = clWindowText
         HotTrackFont.Height = -11
@@ -2428,7 +2424,6 @@ object WizardForm: TWizardForm
           'cate your application directory.'
         Caption = 'Make all folders relative to the scripts path'
         TabOrder = 0
-        Visible = False
         LinkedControls = <>
         HotTrackFont.Charset = DEFAULT_CHARSET
         HotTrackFont.Color = clWindowText
@@ -2459,7 +2454,6 @@ object WizardForm: TWizardForm
       EnabledButtons = [bkStart, bkBack, bkFinish, bkCancel, bkHelp]
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'Generate'
-      ExplicitWidth = 558
       object btnGenerate: TJvBitBtn
         Left = 24
         Top = 112
