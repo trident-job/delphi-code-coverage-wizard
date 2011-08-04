@@ -16,8 +16,6 @@ type
     FOnNewSourceFile: TOnNewSourceFile;
     procedure ReadExeVersion;
     procedure FBuildFileList(const ARootFolder: string; AFileList : TStrings);
-    procedure GenerateDCovExecuteFile;
-    procedure GenerateDCovUnitsAndPathFiles;
   public
     property ProjectSettings  : TProjectSettings read FProjectSettings write FProjectSettings;
     property Title : string read FTitle;
@@ -34,7 +32,8 @@ var
 implementation
 
 uses
-  Forms, JvVersionInfo, JclFileUtils;
+  Forms, JvVersionInfo, JclFileUtils,
+  uScriptsGenerator;
 
 { TApplicationController }
 
@@ -74,61 +73,13 @@ begin
 end;
 
 procedure TApplicationController.Generate;
+var
+  ScriptsGenerator : TScriptsGenerator;
 begin
   // Generate
-  GenerateDCovExecuteFile();
-  GenerateDCovUnitsAndPathFiles();
-end;
-
-procedure TApplicationController.GenerateDCovExecuteFile;
-const
-  DCOV_EXECUTE_FORMAT = 'CodeCoverage.exe -e %s -m %s -uf dcov_units.lst -spf dcov_paths.lst -od %sreport -lt';
-var
-  DCovExecuteText : TStringList;
-begin
-  // Create 'dcov_execute.bat'
-  DCovExecuteText := TStringList.Create;
-  // Fill
-  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [ProjectSettings.ProgramToAnalyze, ProjectSettings.ProgramMapping, ProjectSettings.ReportPath]));
-  // Save
-  DCovExecuteText.SaveToFile(ProjectSettings.ScriptsPath + 'dcov_execute.bat');
-  FreeAndNil(DCovExecuteText);
-end;
-
-procedure TApplicationController.GenerateDCovUnitsAndPathFiles;
-var
-  DCovUnitsText : TStringList;
-  DCovPathsText : TStringList;
-  CheckedUnitList : TStrings;
-  UnitFilename: string;
-begin
-  // Create 'dcov_execute.bat'
-  DCovUnitsText := TStringList.Create;
-  DCovUnitsText.Sorted := True;
-  DCovUnitsText.Duplicates := dupIgnore;
-
-  DCovPathsText := TStringList.Create;
-  DCovPathsText.Sorted := True;
-  DCovPathsText.Duplicates := dupIgnore;
-
-  // Get Checked unit list
-  CheckedUnitList := TStringList.Create;
-  ProjectSettings.ProgramSourceFiles.GetCheckedItemsList(CheckedUnitList);
-
-  for UnitFilename in CheckedUnitList do
-  begin
-    // Add Unit name
-    DCovUnitsText.Add(ChangeFileExt(ExtractFileName(UnitFilename), ''));
-    // Add unit path
-    DCovPathsText.Add(ProjectSettings.ProgramSourcePath + ExtractFilePath(UnitFilename));
-  end;
-  // Save
-  DCovUnitsText.SaveToFile(ProjectSettings.ScriptsPath + 'dcov_units.lst');
-  DCovPathsText.SaveToFile(ProjectSettings.ScriptsPath + 'dcov_paths.lst');
-  // Free
-  FreeAndNil(CheckedUnitList);
-  FreeAndNil(DCovUnitsText);
-  FreeAndNil(DCovPathsText);
+  ScriptsGenerator := TScriptsGenerator.Create(FProjectSettings);
+  ScriptsGenerator.Generate;
+  FreeAndNil(ScriptsGenerator);
 end;
 
 constructor TApplicationController.Create;

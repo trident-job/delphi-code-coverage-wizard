@@ -4,7 +4,8 @@ uses
   Forms,
   fWizard in 'fWizard.pas' {WizardForm},
   uApplicationController in 'uApplicationController.pas',
-  uProjectSettings in 'uProjectSettings.pas';
+  uProjectSettings in 'uProjectSettings.pas',
+  uScriptsGenerator in 'uScriptsGenerator.pas';
 
 {$R *.res}
 

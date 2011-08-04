@@ -1,7 +1,7 @@
 object WizardForm: TWizardForm
   Left = 0
   Top = 0
-  ActiveControl = editScriptOutput
+  ActiveControl = JvWizardWelcomePage
   Caption = 'WizardForm'
   ClientHeight = 438
   ClientWidth = 653
@@ -20,7 +20,7 @@ object WizardForm: TWizardForm
     Top = 0
     Width = 653
     Height = 438
-    ActivePage = JvWizardOutputPage
+    ActivePage = JvWizardWelcomePage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -2320,6 +2320,9 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardOutputPage'
       OnNextButtonClick = JvWizardOutputPageNextButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object JvLabel5: TJvLabel
         Left = 24
         Top = 101
@@ -2454,6 +2457,9 @@ object WizardForm: TWizardForm
       EnabledButtons = [bkStart, bkBack, bkFinish, bkCancel, bkHelp]
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'Generate'
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object btnGenerate: TJvBitBtn
         Left = 24
         Top = 112

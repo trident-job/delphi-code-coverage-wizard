@@ -151,7 +151,7 @@ var
   ScriptFilename : string;
 begin
   // Execute
-  ScriptFilename := editScriptOutput.Directory + '\' + 'dcov_execute.bat';
+  ScriptFilename := ApplicationController.ProjectSettings.ScriptsPath + 'dcov_execute.bat';
   ShellExecute(Handle, 'OPEN', PChar('explorer.exe')
    , PChar('/select, "' + ScriptFilename + '"'), nil, SW_NORMAL) ;
 end;
@@ -161,7 +161,6 @@ procedure TWizardForm.editCoverageReportAfterDialog(Sender: TObject;
 begin
   // Exit if user cancel dialog
   if(AAction = False) then exit;
-  //
   ApplicationController.ProjectSettings.ReportPath := AName + '\';
 end;
 

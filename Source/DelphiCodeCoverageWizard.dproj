@@ -55,6 +55,7 @@
 			</DCCReference>
 			<DCCReference Include="uApplicationController.pas"/>
 			<DCCReference Include="uProjectSettings.pas"/>
+			<DCCReference Include="uScriptsGenerator.pas"/>
 			<None Include="ModelSupport_DelphiCodeCoverageWizard\default.txaPackage"/>
 			<None Include="ModelSupport_DelphiCodeCoverageWizard\default.txvpck"/>
 			<None Include="ModelSupport_DelphiCodeCoverageWizard\Use Case Diagram1.txvuse"/>
