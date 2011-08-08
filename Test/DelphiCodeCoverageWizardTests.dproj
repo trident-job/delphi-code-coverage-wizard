@@ -1,8 +1,8 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
-			<ProjectGuid>{3629547A-7FD7-40B0-BB85-86E8CFF7CCC4}</ProjectGuid>
-			<MainSource>DelphiCodeCoverageWizard.dpr</MainSource>
-			<ProjectVersion>12.3</ProjectVersion>
+			<ProjectGuid>{F3732C11-5132-4CCB-B276-65098EAB938E}</ProjectGuid>
+			<MainSource>DelphiCodeCoverageWizardTests.dpr</MainSource>
+			<ProjectVersion>12.2</ProjectVersion>
 			<Base>True</Base>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 			<Platform>Win32</Platform>
@@ -24,16 +24,17 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_UsePackage>vclimg;vcl;vclx;dbrtl;Rave90VCL;bdertl;VclSmp;rtl;svnui;svn;TeeUI;TeeDB;Tee;vclactnband;vcldb;vcldbx;vcltouch;xmlrtl;dsnap;dsnapcon;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_110_150;Intraweb_110_150;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;vclribbon;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DbxClientDriver;DataSnapClient;dbxcds;DataSnapServer;AzureCloud;DBXInterBaseDriver;DBXMySQLDriver;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver;JclDeveloperTools;Jcl;JclVcl;JclContainers;JvCore;JvSystem;JvStdCtrls;JvAppFrm;JvBands;JvDB;JvDlgs;JvBDE;JvControls;JvCmp;JvCrypt;JvCustom;JvDocking;JvDotNetCtrls;JvGlobus;JvHMI;JvJans;JvManagedThreads;JvMM;JvNet;JvPageComps;JvPascalInterpreter;JvPluginSystem;JvPrintPreview;JvRuntimeDesign;JvTimeFramework;JvWizards;JvXPCtrls</DCC_UsePackage>
+			<DCC_UnitSearchPath>$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
-			<DCC_DcuOutput>..\Tmp</DCC_DcuOutput>
-			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_ExeOutput>..\Exe</DCC_ExeOutput>
-			<DCC_E>false</DCC_E>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_Define>_CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
+			<DCC_DcuOutput>..\Tmp</DCC_DcuOutput>
 			<DCC_N>false</DCC_N>
 			<DCC_S>false</DCC_S>
-			<DCC_F>false</DCC_F>
 			<DCC_K>false</DCC_K>
+			<DCC_E>false</DCC_E>
+			<DCC_F>false</DCC_F>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -47,25 +48,11 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="DelphiCodeCoverageWizard.dpr">
+			<DelphiCompile Include="DelphiCodeCoverageWizardTests.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="fWizard.pas">
-				<Form>WizardForm</Form>
-			</DCCReference>
-			<DCCReference Include="uApplicationController.pas"/>
-			<DCCReference Include="uProjectSettings.pas"/>
-			<DCCReference Include="uScriptsGenerator.pas"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\default.txaPackage"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\default.txvpck"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\Use Case Diagram1.txvuse"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\DelphiCodeCoverageWizard\default.txvpck"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\fMain\default.txvpck"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\fMain\default.txaPackage"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\DelphiCodeCoverageWizard\default.txaPackage"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\Class Diagram.txvcls"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\uApplicationController\default.txaPackage"/>
-			<None Include="ModelSupport_DelphiCodeCoverageWizard\uApplicationController\default.txvpck"/>
+			<DCCReference Include="Test_uProjectSettings.pas"/>
+			<DCCReference Include="..\Source\uProjectSettings.pas"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -86,14 +73,14 @@
 			<BorlandProject>
 				<Delphi.Personality>
 					<VersionInfo>
-						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
-						<VersionInfo Name="MajorVer">0</VersionInfo>
-						<VersionInfo Name="MinorVer">1</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
 						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
-						<VersionInfo Name="PreRelease">True</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
 						<VersionInfo Name="Private">False</VersionInfo>
 						<VersionInfo Name="DLL">False</VersionInfo>
@@ -103,29 +90,26 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">0.1.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName"/>
-						<VersionInfoKeys Name="ProductVersion">0.1.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Source>
-						<Source Name="MainSource">DelphiCodeCoverageWizard.dpr</Source>
+						<Source Name="MainSource">DelphiCodeCoverageWizardTests.dpr</Source>
 					</Source>
-					<Excluded_Packages>
-						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k150.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-						<Excluded_Packages Name="$(BDSBIN)\dclofficexp150.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-					</Excluded_Packages>
 				</Delphi.Personality>
 				<Platforms>
 					<Platform value="Win32">True</Platform>
 				</Platforms>
-				<ModelSupport>True</ModelSupport>
 				<UnitTesting>
-					<TestProjectName>D:\Dev\Projects\delphi-code-coverage-wizard\Test\DelphiCodeCoverageWizardTests.dproj</TestProjectName>
+					<SourceProjectName>D:\Dev\Projects\delphi-code-coverage-wizard\Source\DelphiCodeCoverageWizard.dproj</SourceProjectName>
+					<TestFramework>DUnit / Delphi Win32</TestFramework>
+					<TestRunner>GUI</TestRunner>
 				</UnitTesting>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
