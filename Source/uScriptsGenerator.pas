@@ -42,7 +42,7 @@ end;
 procedure TScriptsGenerator.GenerateDCovExecuteFile;
 const
   // Application path,  ProgramToAnalyze,  ProgramMapping,  ReportPath
-  DCOV_EXECUTE_FORMAT = '%sCodeCoverage.exe -e %s -m %s -uf dcov_units.lst -spf dcov_paths.lst -od %sreport -lt';
+  DCOV_EXECUTE_FORMAT = '"%sCodeCoverage.exe" -e "%s" -m "%s" -uf dcov_units.lst -spf dcov_paths.lst -od "%sreport" -lt';
 var
   DCovExecuteText : TStringList;
 begin
