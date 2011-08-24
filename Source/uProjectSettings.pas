@@ -37,6 +37,7 @@ type
     FProgramSourceFiles: TProgramSourceFiles;
     FScriptsPath: TFilename;
     FReportPath: TFilename;
+    FApplicationPath: TFilename;
     function GetProgramToAnalyze: TFilename;
     function GetProgramMapping: TFilename;
     function GetProgramSourcePath: TFilename;
@@ -49,7 +50,8 @@ type
     property ProgramSourceFiles : TProgramSourceFiles read FProgramSourceFiles write FProgramSourceFiles;
     property ScriptsPath : TFilename read FScriptsPath write FScriptsPath;
     property ReportPath : TFilename read FReportPath write FReportPath;
-    constructor Create; virtual;
+    property ApplicationPath : TFilename read FApplicationPath;
+    constructor Create(const AApplicationPath : TFilename); virtual;
     destructor Destroy; override;
   end;
 
@@ -60,8 +62,9 @@ uses
 
 { TProjectSettings }
 
-constructor TProjectSettings.Create;
+constructor TProjectSettings.Create(const AApplicationPath : TFilename);
 begin
+  FApplicationPath := AApplicationPath;
   FProgramSourceFiles := TProgramSourceFiles.Create;
 end;
 

@@ -41,14 +41,15 @@ end;
 
 procedure TScriptsGenerator.GenerateDCovExecuteFile;
 const
-  DCOV_EXECUTE_FORMAT = 'CodeCoverage.exe -e %s -m %s -uf dcov_units.lst -spf dcov_paths.lst -od %sreport -lt';
+  // Application path,  ProgramToAnalyze,  ProgramMapping,  ReportPath
+  DCOV_EXECUTE_FORMAT = '%sCodeCoverage.exe -e %s -m %s -uf dcov_units.lst -spf dcov_paths.lst -od %sreport -lt';
 var
   DCovExecuteText : TStringList;
 begin
   // Create 'dcov_execute.bat'
   DCovExecuteText := TStringList.Create;
   // Fill
-  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [FSettings.ProgramToAnalyze, FSettings.ProgramMapping, FSettings.ReportPath]));
+  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [FSettings.ApplicationPath, FSettings.ProgramToAnalyze, FSettings.ProgramMapping, FSettings.ReportPath]));
   // Save
   DCovExecuteText.SaveToFile(FSettings.ScriptsPath + 'dcov_execute.bat');
   FreeAndNil(DCovExecuteText);

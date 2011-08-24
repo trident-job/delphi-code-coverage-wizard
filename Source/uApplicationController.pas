@@ -14,12 +14,13 @@ type
     FProjectSettings: TProjectSettings;
     FTitle: string;
     FOnNewSourceFile: TOnNewSourceFile;
+    FApplicationExeName : TFilename;
     procedure ReadExeVersion;
     procedure FBuildFileList(const ARootFolder: string; AFileList : TStrings);
   public
     property ProjectSettings  : TProjectSettings read FProjectSettings write FProjectSettings;
     property Title : string read FTitle;
-    constructor Create;
+    constructor Create(const AApplicationExeName : TFilename);
     destructor Destroy; override;
     procedure BuildSourceList(const ASourcePath : TFilename);
     property OnNewSourceFile : TOnNewSourceFile read FOnNewSourceFile write FOnNewSourceFile;
@@ -82,9 +83,10 @@ begin
   FreeAndNil(ScriptsGenerator);
 end;
 
-constructor TApplicationController.Create;
+constructor TApplicationController.Create(const AApplicationExeName : TFilename);
 begin
-  FProjectSettings := TProjectSettings.Create;
+  FApplicationExeName := AApplicationExeName;
+  FProjectSettings := TProjectSettings.Create(ExtractFilePath(AApplicationExeName));
   ReadExeVersion();
 end;
 
@@ -116,13 +118,13 @@ var
   AppVersionInfo : TJvVersionInfo;
 begin
   // Get version info
-  AppVersionInfo := TJvVersionInfo.Create(Application.ExeName);
+  AppVersionInfo := TJvVersionInfo.Create(FApplicationExeName);
   FTitle := 'DelphiCodeCoverageWizard' + ' v' + AppVersionInfo.FileVersion;
   FreeAndNil(AppVersionInfo);
 end;
 
 initialization
-  ApplicationController := TApplicationController.Create;
+  ApplicationController := TApplicationController.Create(Application.ExeName);
 
 finalization
   FreeAndNil(ApplicationController);
