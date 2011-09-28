@@ -1,0 +1,4 @@
+DelphiCodeCoverageWizard.exe
+delphi-code-coverage-wizard (Google code).url
+CodeCoverage.exe
+MPL-1.1.txt
