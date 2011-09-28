@@ -4,7 +4,7 @@
 			<MainSource>DelphiCodeCoverageWizardTests.dpr</MainSource>
 			<ProjectVersion>12.3</ProjectVersion>
 			<Base>True</Base>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">XmlOutput</Config>
 			<Platform>Win32</Platform>
 			<AppType>Application</AppType>
 			<FrameworkType>VCL</FrameworkType>
@@ -16,6 +16,19 @@
 		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
 			<Cfg_1>true</Cfg_1>
 			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='CmdLine' or '$(Cfg_3)'!=''">
+			<Cfg_3>true</Cfg_3>
+			<CfgParent>Cfg_1</CfgParent>
+			<Cfg_1>true</Cfg_1>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='XmlOutput' or '$(Cfg_4)'!=''">
+			<Cfg_4>true</Cfg_4>
+			<CfgParent>Cfg_3</CfgParent>
+			<Cfg_3>true</Cfg_3>
+			<Cfg_1>true</Cfg_1>
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
@@ -37,9 +50,16 @@
 			<DCC_F>false</DCC_F>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_MapFile>3</DCC_MapFile>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 			<DCC_Optimize>false</DCC_Optimize>
 			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_3)'!=''">
+			<DCC_Define>CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_4)'!=''">
+			<DCC_Define>XML_OUTPUT;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
 			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -53,9 +73,18 @@
 			</DelphiCompile>
 			<DCCReference Include="Test_uProjectSettings.pas"/>
 			<DCCReference Include="..\Source\uProjectSettings.pas"/>
+			<DCCReference Include="DUnit_addon\XmlTestRunner2.pas"/>
+			<BuildConfiguration Include="XmlOutput">
+				<Key>Cfg_4</Key>
+				<CfgParent>Cfg_3</CfgParent>
+			</BuildConfiguration>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="CmdLine">
+				<Key>Cfg_3</Key>
+				<CfgParent>Cfg_1</CfgParent>
 			</BuildConfiguration>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>

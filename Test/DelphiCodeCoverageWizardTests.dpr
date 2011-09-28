@@ -20,14 +20,19 @@ uses
   GUITestRunner,
   TextTestRunner,
   Test_uProjectSettings in 'Test_uProjectSettings.pas',
-  uProjectSettings in '..\Source\uProjectSettings.pas';
+  uProjectSettings in '..\Source\uProjectSettings.pas',
+  XmlTestRunner2 in 'DUnit_addon\XmlTestRunner2.pas';
 
 {R *.RES}
 
 begin
   Application.Initialize;
   if IsConsole then
+  {$IFDEF XML_OUTPUT}
+    with XmlTestRunner2.RunRegisteredTests do
+  {$ELSE}
     with TextTestRunner.RunRegisteredTests do
+  {$ENDIF}
       Free
   else
     GUITestRunner.RunRegisteredTests;
