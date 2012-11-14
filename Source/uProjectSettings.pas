@@ -42,15 +42,15 @@ type
     FReportPath: TFilename;
     FApplicationPath: TFilename;
     FOutputFormat: TOutputFormatSet;
-    function GetProgramToAnalyze: TFilename;
-    function GetProgramMapping: TFilename;
-    function GetProgramSourcePath: TFilename;
-    procedure SetProgramToAnalyze(const Value: TFilename);
-    procedure SetProgramSourcePath(const Value: TFilename);
+    function FGetProgramToAnalyze: TFilename;
+    function FGetProgramMapping: TFilename;
+    function FGetProgramSourcePath: TFilename;
+    procedure FSetProgramToAnalyze(const Value: TFilename);
+    procedure FSetProgramSourcePath(const Value: TFilename);
   public
-    property ProgramToAnalyze : TFilename read GetProgramToAnalyze write SetProgramToAnalyze;
-    property ProgramMapping : TFilename read GetProgramMapping write FProgramMapping;
-    property ProgramSourcePath : TFilename read GetProgramSourcePath write SetProgramSourcePath;
+    property ProgramToAnalyze : TFilename read FGetProgramToAnalyze write FSetProgramToAnalyze;
+    property ProgramMapping : TFilename read FGetProgramMapping write FProgramMapping;
+    property ProgramSourcePath : TFilename read FGetProgramSourcePath write FSetProgramSourcePath;
     property ProgramSourceFiles : TProgramSourceFiles read FProgramSourceFiles write FProgramSourceFiles;
     property ScriptsPath : TFilename read FScriptsPath write FScriptsPath;
     property ReportPath : TFilename read FReportPath write FReportPath;
@@ -79,27 +79,27 @@ begin
   inherited;
 end;
 
-function TProjectSettings.GetProgramMapping: TFilename;
+function TProjectSettings.FGetProgramMapping: TFilename;
 begin
   Result := FProgramMapping;
 end;
 
-function TProjectSettings.GetProgramSourcePath: TFilename;
+function TProjectSettings.FGetProgramSourcePath: TFilename;
 begin
   Result := FProgramSourceFiles.FBasePath;
 end;
 
-function TProjectSettings.GetProgramToAnalyze: TFilename;
+function TProjectSettings.FGetProgramToAnalyze: TFilename;
 begin
   Result := FProgramToAnalyze;
 end;
 
-procedure TProjectSettings.SetProgramSourcePath(const Value: TFilename);
+procedure TProjectSettings.FSetProgramSourcePath(const Value: TFilename);
 begin
   FProgramSourceFiles.FBasePath := Value;
 end;
 
-procedure TProjectSettings.SetProgramToAnalyze(const Value: TFilename);
+procedure TProjectSettings.FSetProgramToAnalyze(const Value: TFilename);
 var
   PossibleMappingFilename : TFilename;
 begin

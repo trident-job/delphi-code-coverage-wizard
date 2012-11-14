@@ -15,7 +15,7 @@ type
     FTitle: string;
     FOnNewSourceFile: TOnNewSourceFile;
     FApplicationExeName : TFilename;
-    procedure ReadExeVersion;
+    procedure FReadExeVersion;
     procedure FBuildFileList(const ARootFolder: string; AFileList : TStrings);
   public
     property ProjectSettings  : TProjectSettings read FProjectSettings write FProjectSettings;
@@ -89,7 +89,7 @@ constructor TApplicationController.Create(const AApplicationExeName : TFilename)
 begin
   FApplicationExeName := AApplicationExeName;
   FProjectSettings := TProjectSettings.Create(ExtractFilePath(AApplicationExeName));
-  ReadExeVersion();
+  FReadExeVersion();
 end;
 
 destructor TApplicationController.Destroy;
@@ -115,7 +115,7 @@ begin
   FreeAndNil(SourceFileList);
 end;
 
-procedure TApplicationController.ReadExeVersion;
+procedure TApplicationController.FReadExeVersion;
 var
   AppVersionInfo : TJvVersionInfo;
 begin
