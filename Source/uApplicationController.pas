@@ -63,9 +63,11 @@ end;
 procedure TApplicationController.FBuildFileList(const ARootFolder: string; AFileList : TStrings);
 const
   PAS_FILE_FILTER : string = '*.pas';
+{$WARN SYMBOL_PLATFORM OFF}
   FA_ALL_FILES_EX = faNormalFile +
     faReadOnly + faHidden + faSysFile + faArchive + faTemporary + faSparseFile
     + faReparsePoint + faCompressed + faOffline + faNotContentIndexed + faEncrypted;
+{$WARN SYMBOL_PLATFORM ON}
 begin
   // $80 must be added because if the file's archive attribute is not set,
   // then FindFirst return [FindoInfo.Attr = 128]  ...
