@@ -11,6 +11,7 @@ type
     FSettings : TProjectSettings;
     procedure GenerateDCovExecuteFile;
     procedure GenerateDCovUnitsAndPathFiles;
+    function FGetOutputFormatSwitches : string;
   public
     constructor Create(const ASettings : TProjectSettings); virtual;
     destructor Destroy; override;
@@ -49,7 +50,8 @@ begin
   // Create 'dcov_execute.bat'
   DCovExecuteText := TStringList.Create;
   // Fill
-  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [FSettings.ApplicationPath, FSettings.ProgramToAnalyze, FSettings.ProgramMapping, FSettings.ReportPath]));
+  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [FSettings.ApplicationPath, FSettings.ProgramToAnalyze,
+    FSettings.ProgramMapping, FSettings.ReportPath]) + FGetOutputFormatSwitches());
   // Save
   DCovExecuteText.SaveToFile(FSettings.ScriptsPath + 'dcov_execute.bat');
   FreeAndNil(DCovExecuteText);
@@ -89,6 +91,15 @@ begin
   FreeAndNil(CheckedUnitList);
   FreeAndNil(DCovUnitsText);
   FreeAndNil(DCovPathsText);
+end;
+
+function TScriptsGenerator.FGetOutputFormatSwitches: string;
+begin
+  Result := '';
+  if(ofEMMA in FSettings.OutputFormat) then Result := Result + ' -emma';
+  if(ofMETA in FSettings.OutputFormat) then Result := Result + ' -meta';
+  if(ofXML in FSettings.OutputFormat) then Result := Result + ' -xml';
+  if(ofHTML in FSettings.OutputFormat) then Result := Result + ' -html';
 end;
 
 end.

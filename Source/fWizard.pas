@@ -7,7 +7,7 @@ uses
   Dialogs, JvWizard, JvWizardRouteMapNodes, JvExControls, StdCtrls, Mask,
   JvExMask, JvToolEdit, CheckLst, JvExCheckLst, JvCheckListBox, JvLabel,
   Buttons, JvExButtons, JvBitBtn, JvExStdCtrls, JvCheckBox, pngimage, ExtCtrls,
-  JvExExtCtrls, JvImage;
+  JvExExtCtrls, JvImage, JvGroupBox;
 
 type
   TWizardForm = class(TForm)
@@ -36,6 +36,11 @@ type
     editCoverageReport: TJvDirectoryEdit;
     btnRunCoverage: TJvBitBtn;
     imageWelcome: TJvImage;
+    JvGroupBox1: TJvGroupBox;
+    cbOutputFormat_EMMA: TJvCheckBox;
+    cbOutputFormat_META: TJvCheckBox;
+    cbOutputFormat_XML: TJvCheckBox;
+    cbOutputFormat_HTML: TJvCheckBox;
     procedure JvDirectoryEdit_DelphiSourceFilesAfterDialog(Sender: TObject; var AName: string;
       var AAction: Boolean);
     procedure editProgramToAnalyzeAfterDialog(Sender: TObject; var AName: string;
@@ -55,6 +60,7 @@ type
     procedure lbSelectedFilesForCoverageClickCheck(Sender: TObject);
     procedure editCoverageReportAfterDialog(Sender: TObject; var AName: string;
       var AAction: Boolean);
+    procedure cbOutputFormat_EMMAClick(Sender: TObject);
   private
     { Private declarations }
     procedure NewSourceFile(Sender: TObject; const AFilename : string);
@@ -127,6 +133,20 @@ begin
   begin
     // Propagate Scripts folder to path reminder
     labelExecutablePathReminder.Caption := ExtractFilePath(editScriptOutput.Directory);
+    // Save OutputFormat settings
+    ApplicationController.ProjectSettings.OutputFormat := [];
+    // EMMA
+    if(cbOutputFormat_EMMA.Checked) then ApplicationController.ProjectSettings.OutputFormat :=
+     ApplicationController.ProjectSettings.OutputFormat + [ofEMMA];
+    // META
+    if(cbOutputFormat_META.Checked) then ApplicationController.ProjectSettings.OutputFormat :=
+     ApplicationController.ProjectSettings.OutputFormat + [ofMETA];
+    // XML
+    if(cbOutputFormat_XML.Checked) then ApplicationController.ProjectSettings.OutputFormat :=
+     ApplicationController.ProjectSettings.OutputFormat + [ofXML];
+    // HTML
+    if(cbOutputFormat_HTML.Checked) then ApplicationController.ProjectSettings.OutputFormat :=
+     ApplicationController.ProjectSettings.OutputFormat + [ofHTML];
   end;
 end;
 
@@ -154,6 +174,11 @@ begin
   ScriptFilename := ApplicationController.ProjectSettings.ScriptsPath + 'dcov_execute.bat';
   ShellExecute(Handle, 'OPEN', PChar('explorer.exe')
    , PChar('/select, "' + ScriptFilename + '"'), nil, SW_NORMAL) ;
+end;
+
+procedure TWizardForm.cbOutputFormat_EMMAClick(Sender: TObject);
+begin
+  if(not cbOutputFormat_EMMA.Checked) then cbOutputFormat_META.Checked := False;
 end;
 
 procedure TWizardForm.editCoverageReportAfterDialog(Sender: TObject;

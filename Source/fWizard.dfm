@@ -1,7 +1,7 @@
 object WizardForm: TWizardForm
   Left = 0
   Top = 0
-  ActiveControl = JvWizardWelcomePage
+  ActiveControl = editScriptOutput
   Caption = 'WizardForm'
   ClientHeight = 438
   ClientWidth = 653
@@ -20,7 +20,7 @@ object WizardForm: TWizardForm
     Top = 0
     Width = 653
     Height = 438
-    ActivePage = JvWizardWelcomePage
+    ActivePage = JvWizardOutputPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -2293,7 +2293,9 @@ object WizardForm: TWizardForm
         Width = 473
         Height = 169
         OnClickCheck = lbSelectedFilesForCoverageClickCheck
+        DoubleBuffered = False
         ItemHeight = 13
+        ParentDoubleBuffered = False
         TabOrder = 1
       end
     end
@@ -2320,9 +2322,6 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardOutputPage'
       OnNextButtonClick = JvWizardOutputPageNextButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object JvLabel5: TJvLabel
         Left = 24
         Top = 101
@@ -2378,6 +2377,75 @@ object WizardForm: TWizardForm
         DialogOptionsWin32 = [odOnlyDirectory, odStatusAvailable, odEditBox, odNewDialogStyle, odNoNewButtonFolder, odValidate]
         DirectInput = False
         TabOrder = 1
+      end
+      object JvGroupBox1: TJvGroupBox
+        Left = 24
+        Top = 224
+        Width = 473
+        Height = 145
+        Caption = 'Output format'
+        TabOrder = 2
+        object cbOutputFormat_EMMA: TJvCheckBox
+          Left = 16
+          Top = 32
+          Width = 260
+          Height = 17
+          Caption = 'EMMA coverage output as '#39'coverage.es'#39'  (-emma)'
+          TabOrder = 0
+          OnClick = cbOutputFormat_EMMAClick
+          LinkedControls = <
+            item
+              Control = cbOutputFormat_META
+            end>
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
+        end
+        object cbOutputFormat_META: TJvCheckBox
+          Left = 40
+          Top = 55
+          Width = 206
+          Height = 17
+          Caption = 'META data and coverage data (-meta)'
+          Enabled = False
+          TabOrder = 1
+          LinkedControls = <>
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
+        end
+        object cbOutputFormat_XML: TJvCheckBox
+          Left = 16
+          Top = 78
+          Width = 317
+          Height = 17
+          Caption = 'XML coverage output as '#39'CodeCoverage_Summary.xml'#39' (-xml)'
+          TabOrder = 2
+          LinkedControls = <>
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
+        end
+        object cbOutputFormat_HTML: TJvCheckBox
+          Left = 16
+          Top = 101
+          Width = 332
+          Height = 17
+          Caption = 'HTML coverage output as '#39'CodeCoverage_Summary.html'#39' (-html)'
+          TabOrder = 3
+          LinkedControls = <>
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
+        end
       end
     end
     object JvWizardSettingsPage: TJvWizardInteriorPage
@@ -2457,16 +2525,12 @@ object WizardForm: TWizardForm
       EnabledButtons = [bkStart, bkBack, bkFinish, bkCancel, bkHelp]
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'Generate'
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object btnGenerate: TJvBitBtn
         Left = 24
         Top = 112
         Width = 97
         Height = 97
         Caption = 'Generate scripts'
-        DoubleBuffered = True
         Glyph.Data = {
           36300000424D3630000000000000360000002800000040000000400000000100
           18000000000000300000130B0000130B00000000000000000001FF00FFFF00FF
@@ -2855,7 +2919,6 @@ object WizardForm: TWizardForm
           FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
         Layout = blGlyphTop
-        ParentDoubleBuffered = False
         TabOrder = 0
         OnClick = btnGenerateClick
         HotTrackFont.Charset = DEFAULT_CHARSET
@@ -3257,7 +3320,6 @@ object WizardForm: TWizardForm
         Width = 97
         Height = 97
         Caption = 'Run coverage'
-        DoubleBuffered = True
         Glyph.Data = {
           36300000424D3630000000000000360000002800000040000000400000000100
           18000000000000300000130B0000130B00000000000000000001FF00FFFF00FF
@@ -3646,7 +3708,6 @@ object WizardForm: TWizardForm
           83B58583B28380B28380FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
         Layout = blGlyphTop
-        ParentDoubleBuffered = False
         TabOrder = 1
         OnClick = btnRunCoverageClick
         HotTrackFont.Charset = DEFAULT_CHARSET

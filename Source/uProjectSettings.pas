@@ -31,6 +31,9 @@ type
 
 
   TProjectSettings = class
+  public
+    type TOutputFormat = (ofEMMA, ofMETA, ofXML, ofHTML);
+    type TOutputFormatSet = set of TOutputFormat;
   private
     FProgramToAnalyze: TFilename;
     FProgramMapping: TFilename;
@@ -38,6 +41,7 @@ type
     FScriptsPath: TFilename;
     FReportPath: TFilename;
     FApplicationPath: TFilename;
+    FOutputFormat: TOutputFormatSet;
     function GetProgramToAnalyze: TFilename;
     function GetProgramMapping: TFilename;
     function GetProgramSourcePath: TFilename;
@@ -51,6 +55,7 @@ type
     property ScriptsPath : TFilename read FScriptsPath write FScriptsPath;
     property ReportPath : TFilename read FReportPath write FReportPath;
     property ApplicationPath : TFilename read FApplicationPath;
+    property OutputFormat : TOutputFormatSet read FOutputFormat write FOutputFormat;
     constructor Create(const AApplicationPath : TFilename); virtual;
     destructor Destroy; override;
   end;
