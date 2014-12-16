@@ -1,7 +1,7 @@
 object WizardForm: TWizardForm
   Left = 0
   Top = 0
-  ActiveControl = editScriptOutput
+  ActiveControl = cbMakeRelativeToScriptPath
   Caption = 'WizardForm'
   ClientHeight = 438
   ClientWidth = 653
@@ -20,7 +20,7 @@ object WizardForm: TWizardForm
     Top = 0
     Width = 653
     Height = 438
-    ActivePage = JvWizardOutputPage
+    ActivePage = JvWizardSettingsPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -2180,11 +2180,6 @@ object WizardForm: TWizardForm
         Height = 13
         Caption = 'Delphi executable program to analyze'
         Transparent = True
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
       end
       object JvLabel4: TJvLabel
         Left = 24
@@ -2193,11 +2188,6 @@ object WizardForm: TWizardForm
         Height = 13
         Caption = 'Mapping of this executable'
         Transparent = True
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
       end
       object editProgramToAnalyze: TJvFilenameEdit
         Left = 24
@@ -2212,6 +2202,7 @@ object WizardForm: TWizardForm
           'age'
         DirectInput = False
         TabOrder = 0
+        Text = ''
       end
       object editProgramMapping: TJvFilenameEdit
         Left = 24
@@ -2223,6 +2214,7 @@ object WizardForm: TWizardForm
           'age'
         DirectInput = False
         TabOrder = 1
+        Text = ''
       end
     end
     object JvWizardSourcePage: TJvWizardInteriorPage
@@ -2254,11 +2246,6 @@ object WizardForm: TWizardForm
         Height = 13
         Caption = 'Delphi source files directory'
         Transparent = True
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
       end
       object JvLabel2: TJvLabel
         Left = 24
@@ -2267,11 +2254,6 @@ object WizardForm: TWizardForm
         Height = 13
         Caption = 'Selected files for coverage analysis'
         Transparent = True
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
       end
       object JvDirectoryEdit_DelphiSourceFiles: TJvDirectoryEdit
         Left = 24
@@ -2286,6 +2268,7 @@ object WizardForm: TWizardForm
         DialogOptionsWin32 = [odOnlyDirectory, odStatusAvailable, odEditBox, odNewDialogStyle, odNoNewButtonFolder, odValidate]
         DirectInput = False
         TabOrder = 0
+        Text = ''
       end
       object lbSelectedFilesForCoverage: TJvCheckListBox
         Left = 24
@@ -2331,11 +2314,6 @@ object WizardForm: TWizardForm
           'Script output folder (files needed to execute DelphiCodeCoverage' +
           ')'
         Transparent = True
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
       end
       object JvLabel6: TJvLabel
         Left = 24
@@ -2344,11 +2322,6 @@ object WizardForm: TWizardForm
         Height = 13
         Caption = 'Coverage report folder'
         Transparent = True
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
       end
       object editScriptOutput: TJvDirectoryEdit
         Left = 24
@@ -2363,6 +2336,7 @@ object WizardForm: TWizardForm
         DialogOptionsWin32 = [odOnlyDirectory, odStatusAvailable, odEditBox, odNewDialogStyle, odNoNewButtonFolder, odValidate]
         DirectInput = False
         TabOrder = 0
+        Text = ''
       end
       object editCoverageReport: TJvDirectoryEdit
         Left = 24
@@ -2377,6 +2351,7 @@ object WizardForm: TWizardForm
         DialogOptionsWin32 = [odOnlyDirectory, odStatusAvailable, odEditBox, odNewDialogStyle, odNoNewButtonFolder, odValidate]
         DirectInput = False
         TabOrder = 1
+        Text = ''
       end
       object JvGroupBox1: TJvGroupBox
         Left = 24
@@ -2397,11 +2372,6 @@ object WizardForm: TWizardForm
             item
               Control = cbOutputFormat_META
             end>
-          HotTrackFont.Charset = DEFAULT_CHARSET
-          HotTrackFont.Color = clWindowText
-          HotTrackFont.Height = -11
-          HotTrackFont.Name = 'Tahoma'
-          HotTrackFont.Style = []
         end
         object cbOutputFormat_META: TJvCheckBox
           Left = 40
@@ -2412,11 +2382,6 @@ object WizardForm: TWizardForm
           Enabled = False
           TabOrder = 1
           LinkedControls = <>
-          HotTrackFont.Charset = DEFAULT_CHARSET
-          HotTrackFont.Color = clWindowText
-          HotTrackFont.Height = -11
-          HotTrackFont.Name = 'Tahoma'
-          HotTrackFont.Style = []
         end
         object cbOutputFormat_XML: TJvCheckBox
           Left = 16
@@ -2426,11 +2391,6 @@ object WizardForm: TWizardForm
           Caption = 'XML coverage output as '#39'CodeCoverage_Summary.xml'#39' (-xml)'
           TabOrder = 2
           LinkedControls = <>
-          HotTrackFont.Charset = DEFAULT_CHARSET
-          HotTrackFont.Color = clWindowText
-          HotTrackFont.Height = -11
-          HotTrackFont.Name = 'Tahoma'
-          HotTrackFont.Style = []
         end
         object cbOutputFormat_HTML: TJvCheckBox
           Left = 16
@@ -2440,11 +2400,6 @@ object WizardForm: TWizardForm
           Caption = 'HTML coverage output as '#39'CodeCoverage_Summary.html'#39' (-html)'
           TabOrder = 3
           LinkedControls = <>
-          HotTrackFont.Charset = DEFAULT_CHARSET
-          HotTrackFont.Color = clWindowText
-          HotTrackFont.Height = -11
-          HotTrackFont.Name = 'Tahoma'
-          HotTrackFont.Style = []
         end
       end
     end
@@ -2468,10 +2423,11 @@ object WizardForm: TWizardForm
       EnabledButtons = [bkStart, bkBack, bkNext, bkCancel, bkHelp]
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardSettingsPage'
-      object labelExecutablePathReminder: TJvLabel
+      OnNextButtonClick = JvWizardSettingsPageNextButtonClick
+      object labelScriptPathReminder: TJvLabel
         Left = 56
-        Top = 159
-        Width = 441
+        Top = 220
+        Width = 433
         Height = 13
         AutoSize = False
         Caption = '[Path]'
@@ -2479,15 +2435,28 @@ object WizardForm: TWizardForm
         FrameColor = clWindow
         ParentColor = False
         Transparent = True
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
       end
-      object cbMakeFoldersRelativeToExe: TJvCheckBox
+      object JvLabel7: TJvLabel
+        Left = 56
+        Top = 269
+        Width = 40
+        Height = 13
+        Caption = 'Preview'
+        Transparent = True
+      end
+      object JvLabel8: TJvLabel
         Left = 24
-        Top = 136
+        Top = 112
+        Width = 371
+        Height = 13
+        Caption = 
+          'Note: Be sure to have '#39'CodeCoverage.exe'#39' in your path or in the ' +
+          'script path.'
+        Transparent = True
+      end
+      object cbMakeRelativeToScriptPath: TJvCheckBox
+        Left = 24
+        Top = 197
         Width = 225
         Height = 17
         Hint = 
@@ -2495,12 +2464,17 @@ object WizardForm: TWizardForm
           'cate your application directory.'
         Caption = 'Make all folders relative to the scripts path'
         TabOrder = 0
+        OnClick = cbMakeRelativeToScriptPathClick
         LinkedControls = <>
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
+      end
+      object memoPreview: TJvMemo
+        Left = 56
+        Top = 269
+        Width = 433
+        Height = 108
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 1
       end
     end
     object JvWizardGeneratePage: TJvWizardInteriorPage
@@ -2921,11 +2895,6 @@ object WizardForm: TWizardForm
         Layout = blGlyphTop
         TabOrder = 0
         OnClick = btnGenerateClick
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
         HotGlyph.Data = {
           36300000424D3630000000000000360000002800000040000000400000000100
           18000000000000300000130B0000130B00000000000000000001FF00FFFF00FF
@@ -3710,11 +3679,6 @@ object WizardForm: TWizardForm
         Layout = blGlyphTop
         TabOrder = 1
         OnClick = btnRunCoverageClick
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
         HotGlyph.Data = {
           36300000424D3630000000000000360000002800000040000000400000000100
           18000000000000300000130B0000130B00000000000000000001FF00FFFF00FF

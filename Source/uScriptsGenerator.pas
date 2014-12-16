@@ -12,6 +12,7 @@ type
     procedure GenerateDCovExecuteFile;
     procedure GenerateDCovUnitsAndPathFiles;
     function FGetOutputFormatSwitches : string;
+    function FGetPath(const APath : string) : string;
   public
     constructor Create(const ASettings : TProjectSettings); virtual;
     destructor Destroy; override;
@@ -21,7 +22,7 @@ type
 implementation
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, IOUtils;
 
 constructor TScriptsGenerator.Create(const ASettings: TProjectSettings);
 begin
@@ -50,8 +51,8 @@ begin
   // Create 'dcov_execute.bat'
   DCovExecuteText := TStringList.Create;
   // Fill
-  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [FSettings.ApplicationPath, FSettings.ProgramToAnalyze,
-    FSettings.ProgramMapping, FSettings.ReportPath]) + FGetOutputFormatSwitches());
+  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [FGetPath(FSettings.ApplicationPath), FGetPath(FSettings.ProgramToAnalyze),
+    FGetPath(FSettings.ProgramMapping), FGetPath(FSettings.ReportPath)]) + FGetOutputFormatSwitches());
   // Save
   DCovExecuteText.SaveToFile(FSettings.ScriptsPath + 'dcov_execute.bat');
   FreeAndNil(DCovExecuteText);
@@ -100,6 +101,14 @@ begin
   if(ofMETA in FSettings.OutputFormat) then Result := Result + ' -meta';
   if(ofXML in FSettings.OutputFormat) then Result := Result + ' -xml';
   if(ofHTML in FSettings.OutputFormat) then Result := Result + ' -html';
+end;
+
+function TScriptsGenerator.FGetPath(const APath: string): string;
+begin
+  if(FSettings.RelativeToScriptPath) then
+  // Extract path relative to scripts relative
+   Result := ExtractRelativepath(FSettings.ScriptsPath , APath)
+  else Result := APath;
 end;
 
 end.

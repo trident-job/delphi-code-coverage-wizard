@@ -7,7 +7,7 @@ uses
   Dialogs, JvWizard, JvWizardRouteMapNodes, JvExControls, StdCtrls, Mask,
   JvExMask, JvToolEdit, CheckLst, JvExCheckLst, JvCheckListBox, JvLabel,
   Buttons, JvExButtons, JvBitBtn, JvExStdCtrls, JvCheckBox, pngimage, ExtCtrls,
-  JvExExtCtrls, JvImage, JvGroupBox;
+  JvExExtCtrls, JvImage, JvGroupBox, JvMemo, JvRadioGroup;
 
 type
   TWizardForm = class(TForm)
@@ -30,8 +30,8 @@ type
     JvWizardOutputPage: TJvWizardInteriorPage;
     JvLabel5: TJvLabel;
     JvLabel6: TJvLabel;
-    cbMakeFoldersRelativeToExe: TJvCheckBox;
-    labelExecutablePathReminder: TJvLabel;
+    cbMakeRelativeToScriptPath: TJvCheckBox;
+    labelScriptPathReminder: TJvLabel;
     editScriptOutput: TJvDirectoryEdit;
     editCoverageReport: TJvDirectoryEdit;
     btnRunCoverage: TJvBitBtn;
@@ -41,6 +41,9 @@ type
     cbOutputFormat_META: TJvCheckBox;
     cbOutputFormat_XML: TJvCheckBox;
     cbOutputFormat_HTML: TJvCheckBox;
+    memoPreview: TJvMemo;
+    JvLabel7: TJvLabel;
+    JvLabel8: TJvLabel;
     procedure JvDirectoryEdit_DelphiSourceFilesAfterDialog(Sender: TObject; var AName: string;
       var AAction: Boolean);
     procedure editProgramToAnalyzeAfterDialog(Sender: TObject; var AName: string;
@@ -61,9 +64,12 @@ type
     procedure editCoverageReportAfterDialog(Sender: TObject; var AName: string;
       var AAction: Boolean);
     procedure cbOutputFormat_EMMAClick(Sender: TObject);
+    procedure JvWizardSettingsPageNextButtonClick(Sender: TObject; var Stop: Boolean);
+    procedure cbMakeRelativeToScriptPathClick(Sender: TObject);
   private
     { Private declarations }
     procedure NewSourceFile(Sender: TObject; const AFilename : string);
+    function FGetRelativePath(const APath: string): string;
   public
     { Public declarations }
   end;
@@ -76,7 +82,7 @@ implementation
 {$R *.dfm}
 
 uses
-  JclFileUtils, ShellApi,
+  JclFileUtils, ShellApi, System.UITypes,
   uApplicationController, uProjectSettings;
 
 
@@ -132,7 +138,8 @@ begin
   if(Sender = JvWizardOutputPage) then
   begin
     // Propagate Scripts folder to path reminder
-    labelExecutablePathReminder.Caption := ExtractFilePath(editScriptOutput.Directory);
+    labelScriptPathReminder.Caption := editScriptOutput.Directory;
+
     // Save OutputFormat settings
     ApplicationController.ProjectSettings.OutputFormat := [];
     // EMMA
@@ -147,6 +154,14 @@ begin
     // HTML
     if(cbOutputFormat_HTML.Checked) then ApplicationController.ProjectSettings.OutputFormat :=
      ApplicationController.ProjectSettings.OutputFormat + [ofHTML];
+  end;
+end;
+
+procedure TWizardForm.JvWizardSettingsPageNextButtonClick(Sender: TObject; var Stop: Boolean);
+begin
+  if(Sender = JvWizardSettingsPage) then
+  begin
+    ApplicationController.ProjectSettings.RelativeToScriptPath := cbMakeRelativeToScriptPath.Checked;
   end;
 end;
 
@@ -174,6 +189,19 @@ begin
   ScriptFilename := ApplicationController.ProjectSettings.ScriptsPath + 'dcov_execute.bat';
   ShellExecute(Handle, 'OPEN', PChar('explorer.exe')
    , PChar('/select, "' + ScriptFilename + '"'), nil, SW_NORMAL) ;
+end;
+
+procedure TWizardForm.cbMakeRelativeToScriptPathClick(Sender: TObject);
+begin
+  if(cbMakeRelativeToScriptPath.Checked) then
+  begin
+    memoPreview.Lines.Add('DelphiCoverage.exe: [' + FGetRelativePath(ApplicationController.ProjectSettings.ApplicationPath) + ']');
+    memoPreview.Lines.Add('ProgramToAnalyze: [' + FGetRelativePath(ApplicationController.ProjectSettings.ProgramToAnalyze) + ']');
+    memoPreview.Lines.Add('ProgramMapping: [' + FGetRelativePath(ApplicationController.ProjectSettings.ProgramMapping) + ']');
+    memoPreview.Lines.Add('ProgramSourcePath: [' + FGetRelativePath(ApplicationController.ProjectSettings.ProgramSourcePath) + ']');
+    memoPreview.Lines.Add('ReportPath: [' + FGetRelativePath(ApplicationController.ProjectSettings.ReportPath) + ']');
+  end
+  else memoPreview.Clear;
 end;
 
 procedure TWizardForm.cbOutputFormat_EMMAClick(Sender: TObject);
@@ -217,6 +245,12 @@ end;
 procedure TWizardForm.imageWelcomeDblClick(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://code.google.com/p/delphi-code-coverage-wizard',nil,nil, SW_SHOWNORMAL) ;
+end;
+
+function TWizardForm.FGetRelativePath(const APath: string): string;
+begin
+  // Extract path relative to scripts relative
+  Result := ExtractRelativepath(ApplicationController.ProjectSettings.ScriptsPath , APath)
 end;
 
 end.

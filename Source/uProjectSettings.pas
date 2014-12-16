@@ -42,6 +42,7 @@ type
     FReportPath: TFilename;
     FApplicationPath: TFilename;
     FOutputFormat: TOutputFormatSet;
+    FRelativeToScriptPath: Boolean;
     function FGetProgramToAnalyze: TFilename;
     function FGetProgramMapping: TFilename;
     function FGetProgramSourcePath: TFilename;
@@ -56,6 +57,7 @@ type
     property ReportPath : TFilename read FReportPath write FReportPath;
     property ApplicationPath : TFilename read FApplicationPath;
     property OutputFormat : TOutputFormatSet read FOutputFormat write FOutputFormat;
+    property RelativeToScriptPath : Boolean read FRelativeToScriptPath write FRelativeToScriptPath;
     constructor Create(const AApplicationPath : TFilename); virtual;
     destructor Destroy; override;
   end;
