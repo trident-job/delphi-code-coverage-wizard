@@ -83,7 +83,8 @@ implementation
 
 uses
   JclFileUtils, ShellApi, System.UITypes,
-  uApplicationController, uProjectSettings;
+  uApplicationController, uProjectSettings,
+  uManageToolsMenu;
 
 
 procedure TWizardForm.JvDirectoryEdit_DelphiSourceFilesAfterDialog(Sender: TObject;
@@ -238,7 +239,17 @@ begin
 end;
 
 procedure TWizardForm.FormShow(Sender: TObject);
+var
+  ToolsManager : TToolsMenuManager;
 begin
+  // Manage IDE "Tools" menu integration if applicable
+  ToolsManager := TToolsMenuManager.Create;
+  try
+    ToolsManager.CheckAndSetIDEToolsEntry(self);
+  finally
+    ToolsManager.Free;
+  end;
+
   Caption := ApplicationController.Title;
 end;
 
