@@ -118,7 +118,8 @@ begin
           if (MessageDlg('You are either running this program for the first time '+
                          'or new IDE versions/configurations have been added to '+
                          'the system. Would you like to manage IDE "Tools" menu ' +
-                         'integration of Delphi Code Covnerage Wizard now?',
+                         'integration of Delphi Code Covnerage Wizard now? ' +
+                         '(available in Tools menu after next IDE restart)',
                          mtConfirmation, [mbYes, mbNo], -1, mbYes) = mrYes) then
           begin
             ConfigSelectionForm := TConfigSelectionForm.Create(AOwner,
@@ -182,15 +183,15 @@ end;
 
 function TToolsMenuManager.GetNeverAskSet: Boolean;
 begin
+  Result := false;
+
   if FReg.OpenKey('SOFTWARE\DelphiCodeCoverageWizard', false) then
   begin
     if FReg.ValueExists('NeverAsk') then
       Result := FReg.ReadBool('NeverAsk');
 
     FReg.CloseKey;
-  end
-  else
-    Result := false;
+  end;
 end;
 
 procedure TToolsMenuManager.SetKnownConfigurations(const KnownConfigurations: string);
