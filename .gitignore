@@ -1,0 +1,12 @@
+
+*.~dsk
+
+*.dsk
+
+*.tvsconfig
+
+*.map
+
+*.txaPackage
+
+*.dcu

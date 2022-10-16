@@ -66,10 +66,16 @@ type
     procedure cbOutputFormat_EMMAClick(Sender: TObject);
     procedure JvWizardSettingsPageNextButtonClick(Sender: TObject; var Stop: Boolean);
     procedure cbMakeRelativeToScriptPathClick(Sender: TObject);
+    procedure editProgramMappingAfterDialog(Sender: TObject; var AName: string;
+      var AAction: Boolean);
+    procedure editProgramToAnalyzeExit(Sender: TObject);
+    procedure editProgramMappingExit(Sender: TObject);
+    procedure JvDirectoryEdit_DelphiSourceFilesExit(Sender: TObject);
   private
     { Private declarations }
     procedure NewSourceFile(Sender: TObject; const AFilename : string);
     function FGetRelativePath(const APath: string): string;
+    procedure UpdateSourceList(DirectoryName: string);
   public
     { Public declarations }
   end;
@@ -86,25 +92,35 @@ uses
   uApplicationController, uProjectSettings,
   uManageToolsMenu;
 
-
 procedure TWizardForm.JvDirectoryEdit_DelphiSourceFilesAfterDialog(Sender: TObject;
   var AName: string; var AAction: Boolean);
 begin
   // Exit is user cancel dialog
   if(AAction = False) then exit;
+  UpdateSourceList(AName);
+end;
+
+procedure TWizardForm.JvDirectoryEdit_DelphiSourceFilesExit(Sender: TObject);
+begin
+  UpdateSourceList(JvDirectoryEdit_DelphiSourceFiles.Text);
+end;
+
+procedure TWizardForm.UpdateSourceList(DirectoryName: string);
+begin
   // If list is not empty, ask confirmation to clear the list
   if(lbSelectedFilesForCoverage.Count <> 0) then
   begin
-    if(MessageDlg('File list selected for coverage is not empty.'+#13+#10
-    +'Changing delphi source file directory will clear the list.'
-    +#13+#10+'Press OK to continue.', mtWarning, [mbOK, mbCancel], 0) = mrCancel) then exit
+    if(MessageDlg('File list selected for coverage is not empty.' + sLineBreak +
+                  'Changing Delphi source file directory will clear the list.' +
+                  sLineBreak +'Press OK to continue.',
+                  mtWarning, [mbOK, mbCancel], 0) = mrCancel) then exit
     else lbSelectedFilesForCoverage.Clear;
   end;
   // Fill the list with '*.pas' files found
 
   ApplicationController.OnNewSourceFile := NewSourceFile;
   lbSelectedFilesForCoverage.Items.BeginUpdate;
-  ApplicationController.BuildSourceList(AName);
+  ApplicationController.BuildSourceList(DirectoryName);
   lbSelectedFilesForCoverage.CheckAll;
   lbSelectedFilesForCoverage.Items.EndUpdate();
 end;
@@ -118,7 +134,8 @@ end;
 
 procedure TWizardForm.JvWizard1HelpButtonClick(Sender: TObject);
 begin
-  MessageDlg('DelphiCodeCoverageWizard by TridenT.', mtInformation, [mbOK], 0);
+  MessageDlg('DelphiCodeCoverageWizard original by TridenT.' + sLineBreak +
+             'Further enhanced by M. Humm', mtInformation, [mbOK], 0);
 end;
 
 procedure TWizardForm.JvWizardExecutablePageNextButtonClick(Sender: TObject;
@@ -218,6 +235,21 @@ begin
   ApplicationController.ProjectSettings.ReportPath := AName + '\';
 end;
 
+procedure TWizardForm.editProgramMappingAfterDialog(Sender: TObject;
+  var AName: string; var AAction: Boolean);
+begin
+  // Exit if user cancel dialog
+  if(AAction = False) then exit;
+  // Assign Program to analyze to settings
+  ApplicationController.ProjectSettings.ProgramMapping := AName;
+end;
+
+procedure TWizardForm.editProgramMappingExit(Sender: TObject);
+begin
+  // Assign Program to analyze to settings
+  ApplicationController.ProjectSettings.ProgramMapping := (Sender as TJvFilenameEdit).Text;
+end;
+
 procedure TWizardForm.editProgramToAnalyzeAfterDialog(Sender: TObject;
   var AName: string; var AAction: Boolean);
 begin
@@ -226,6 +258,25 @@ begin
   // Assign Program to analyze to settings
   ApplicationController.ProjectSettings.ProgramToAnalyze := AName;
   editProgramMapping.FileName := ApplicationController.ProjectSettings.ProgramMapping;
+
+  if editProgramMapping.FileName = '' then
+    MessageDlg('No map file found for specified .exe file.' + sLineBreak +
+               'Please select a .map file!', mtError, [mbOK], -1);
+end;
+
+procedure TWizardForm.editProgramToAnalyzeExit(Sender: TObject);
+begin
+  // Assign Program to analyze to settings
+  ApplicationController.ProjectSettings.ProgramToAnalyze := (Sender as TJvFileNameEdit).Text;
+  editProgramMapping.FileName := ApplicationController.ProjectSettings.ProgramMapping;
+
+  if editProgramToAnalyze.FileName = '' then
+    MessageDlg('No .exe file specified.' + sLineBreak +
+               'Please specify an existing .exe file!', mtError, [mbOK], -1);
+
+  if editProgramMapping.FileName = '' then
+    MessageDlg('No .map file found for specified .exe file.' + sLineBreak +
+               'Please select a .map file!', mtError, [mbOK], -1);
 end;
 
 procedure TWizardForm.editScriptOutputAfterDialog(Sender: TObject;
@@ -255,7 +306,7 @@ end;
 
 procedure TWizardForm.imageWelcomeDblClick(Sender: TObject);
 begin
-  ShellExecute(Handle, 'open', 'http://code.google.com/p/delphi-code-coverage-wizard',nil,nil, SW_SHOWNORMAL) ;
+  ShellExecute(Handle, 'open', 'https://github.com/MHumm/delphi-code-coverage-wizard',nil,nil, SW_SHOWNORMAL) ;
 end;
 
 function TWizardForm.FGetRelativePath(const APath: string): string;

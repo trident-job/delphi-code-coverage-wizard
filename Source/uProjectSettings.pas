@@ -111,7 +111,7 @@ begin
   begin
     PossibleMappingFilename := ChangeFileExt(Value, '.map');
     if(FileExists(PossibleMappingFilename)) then
-     FProgramMapping := PossibleMappingFilename;
+      FProgramMapping := PossibleMappingFilename;
   end;
 end;
 

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.847,=D:\Projekte\DelphiCodeCoverageWizardFork\Source\ModelSupport_DelphiCodeCoverageWizard\uScriptsGenerator\default.txvpck</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.050,=D:\Projekte\DelphiCodeCoverageWizardFork\Source\ModelSupport_DelphiCodeCoverageWizard\uProjectSettings\default.txvpck</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.709,=D:\Projekte\DelphiCodeCoverageWizardFork\Source\AddIDEToolsMenu\ConfigurationSelectionForm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.050,=D:\Projekte\DelphiCodeCoverageWizardFork\Source\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.909,=D:\Projekte\DelphiCodeCoverageWizardFork\Source\ModelSupport_DelphiCodeCoverageWizard\fWizard\default.txvpck</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.349,=D:\Projekte\DelphiCodeCoverageWizardFork\Source\AddIDEToolsMenu\AddIDETool.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.722,D:\Projekte\DelphiCodeCoverageWizardFork\Source\Unit1.pas=D:\Projekte\DelphiCodeCoverageWizardFork\Source\uManageToolsMenu.pas</Transaction>
+  </Transactions>
+</BorlandProject>

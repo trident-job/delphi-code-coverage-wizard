@@ -1,0 +1,53 @@
+unit uManageToolsMenu;
+
+interface
+
+type
+  /// <summary>
+  ///   Class for managing this tool's "Tools" menu entry in the IDE
+  /// </summary>
+  TToolsMenuManager = class(TObject)
+  private
+    /// <summary>
+    ///   Checks, whether the wizard already checked if it is integrated
+    ///   into tools menu or not and if, returns a list of known configurations
+    ///   so we can check if any new configurations appeared.
+    /// </summary>
+    /// <param name="KnownConfigurations">
+    ///   If we found that there are Tools menu integration settings for this
+    ///   tool already, this string returns a ; separated list of IDE
+    ///   configurations known at the time we did that setting.
+    /// </param>
+    /// <returns>
+    ///   true, if there's already a setting, false if not.
+    /// </returns>
+    function HasToolsSettings(var KnownConfigurations: string):Boolean;
+  public
+  end;
+
+implementation
+
+uses
+  WinApi.Windows,
+  Registry;
+
+{ TToolsMenuManager }
+
+function TToolsMenuManager.HasToolsSettings(var KnownConfigurations: string): Boolean;
+var
+  Reg : TRegistry;
+begin
+  Result := false;
+
+  Reg := TRegistry.Create;
+  try
+    Reg.RootKey := HKEY_CURRENT_USER;
+
+    if Reg.OpenKey('SOFTWARE\DelphiCodeCoverageWizard', false) then
+      KnownConfigurations := Reg.ReadString('KnownConfigurations');
+  finally
+    Reg.Free;
+  end;
+end;
+
+end.

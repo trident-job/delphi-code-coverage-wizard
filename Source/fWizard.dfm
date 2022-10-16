@@ -1,7 +1,7 @@
 object WizardForm: TWizardForm
   Left = 0
   Top = 0
-  ActiveControl = cbMakeRelativeToScriptPath
+  ActiveControl = JvDirectoryEdit_DelphiSourceFiles
   Caption = 'WizardForm'
   ClientHeight = 438
   ClientWidth = 653
@@ -11,16 +11,14 @@ object WizardForm: TWizardForm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object JvWizard1: TJvWizard
     Left = 0
     Top = 0
     Width = 653
     Height = 438
-    ActivePage = JvWizardSettingsPage
+    ActivePage = JvWizardSourcePage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -47,10 +45,13 @@ object WizardForm: TWizardForm
     ShowRouteMap = True
     OnCancelButtonClick = JvWizard1CancelButtonClick
     OnHelpButtonClick = JvWizard1HelpButtonClick
+    ExplicitWidth = 649
+    ExplicitHeight = 437
     DesignSize = (
       653
       438)
     object JvWizardWelcomePage: TJvWizardWelcomePage
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Welcome'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -73,6 +74,8 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardWelcomePage'
       WaterMark.Visible = False
+      ExplicitWidth = 504
+      ExplicitHeight = 395
       object imageWelcome: TJvImage
         Left = 6
         Top = 80
@@ -2151,6 +2154,7 @@ object WizardForm: TWizardForm
       end
     end
     object JvWizardExecutablePage: TJvWizardInteriorPage
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Executable'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -2173,6 +2177,9 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardExecutablePage'
       OnNextButtonClick = JvWizardExecutablePageNextButtonClick
+      DesignSize = (
+        508
+        396)
       object JvLabel3: TJvLabel
         Left = 24
         Top = 93
@@ -2200,24 +2207,29 @@ object WizardForm: TWizardForm
         DialogTitle = 
           'Select Delphi executable program to analyze with DelphiCodeCover' +
           'age'
-        DirectInput = False
+        Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
         Text = ''
+        OnExit = editProgramToAnalyzeExit
       end
       object editProgramMapping: TJvFilenameEdit
         Left = 24
         Top = 168
         Width = 473
         Height = 21
+        OnAfterDialog = editProgramMappingAfterDialog
         DialogTitle = 
           'Select Delphi executable program to analyze with DelphiCodeCover' +
           'age'
         DirectInput = False
+        Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
         Text = ''
+        OnExit = editProgramMappingExit
       end
     end
     object JvWizardSourcePage: TJvWizardInteriorPage
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Source'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -2239,6 +2251,9 @@ object WizardForm: TWizardForm
       EnabledButtons = [bkStart, bkBack, bkNext, bkCancel, bkHelp]
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardSource'
+      DesignSize = (
+        508
+        396)
       object JvLabel1: TJvLabel
         Left = 24
         Top = 101
@@ -2257,32 +2272,34 @@ object WizardForm: TWizardForm
       end
       object JvDirectoryEdit_DelphiSourceFiles: TJvDirectoryEdit
         Left = 24
-        Top = 120
+        Top = 122
         Width = 473
         Height = 21
         AcceptFiles = False
         OnAfterDialog = JvDirectoryEdit_DelphiSourceFilesAfterDialog
-        DialogKind = dkWin32
         DialogText = 'Select folder with Delphi source files'
         DialogOptions = []
         DialogOptionsWin32 = [odOnlyDirectory, odStatusAvailable, odEditBox, odNewDialogStyle, odNoNewButtonFolder, odValidate]
-        DirectInput = False
+        Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
         Text = ''
+        OnExit = JvDirectoryEdit_DelphiSourceFilesExit
       end
       object lbSelectedFilesForCoverage: TJvCheckListBox
         Left = 24
         Top = 168
         Width = 473
-        Height = 169
-        OnClickCheck = lbSelectedFilesForCoverageClickCheck
+        Height = 209
+        Anchors = [akLeft, akTop, akRight, akBottom]
         DoubleBuffered = False
-        ItemHeight = 13
+        ItemHeight = 17
         ParentDoubleBuffered = False
         TabOrder = 1
+        OnClickCheck = lbSelectedFilesForCoverageClickCheck
       end
     end
     object JvWizardOutputPage: TJvWizardInteriorPage
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Output'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -2305,6 +2322,9 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardOutputPage'
       OnNextButtonClick = JvWizardOutputPageNextButtonClick
+      DesignSize = (
+        508
+        396)
       object JvLabel5: TJvLabel
         Left = 24
         Top = 101
@@ -2330,11 +2350,11 @@ object WizardForm: TWizardForm
         Height = 21
         AcceptFiles = False
         OnAfterDialog = editScriptOutputAfterDialog
-        DialogKind = dkWin32
         DialogText = 'Select folder to put scripts to execute DelphiCodeCoverage'
         DialogOptions = [sdAllowCreate, sdPerformCreate]
         DialogOptionsWin32 = [odOnlyDirectory, odStatusAvailable, odEditBox, odNewDialogStyle, odNoNewButtonFolder, odValidate]
         DirectInput = False
+        Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
         Text = ''
       end
@@ -2345,11 +2365,11 @@ object WizardForm: TWizardForm
         Height = 21
         AcceptFiles = False
         OnAfterDialog = editCoverageReportAfterDialog
-        DialogKind = dkWin32
         DialogText = 'Select folder to put DelphiCodeCoverage report'
         DialogOptions = [sdAllowCreate, sdPerformCreate]
         DialogOptionsWin32 = [odOnlyDirectory, odStatusAvailable, odEditBox, odNewDialogStyle, odNoNewButtonFolder, odValidate]
         DirectInput = False
+        Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
         Text = ''
       end
@@ -2358,6 +2378,7 @@ object WizardForm: TWizardForm
         Top = 224
         Width = 473
         Height = 145
+        Anchors = [akLeft, akTop, akRight]
         Caption = 'Output format'
         TabOrder = 2
         object cbOutputFormat_EMMA: TJvCheckBox
@@ -2404,6 +2425,7 @@ object WizardForm: TWizardForm
       end
     end
     object JvWizardSettingsPage: TJvWizardInteriorPage
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Settings'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -2424,6 +2446,9 @@ object WizardForm: TWizardForm
       VisibleButtons = [bkStart, bkBack, bkNext, bkFinish, bkCancel, bkHelp]
       Caption = 'JvWizardSettingsPage'
       OnNextButtonClick = JvWizardSettingsPageNextButtonClick
+      DesignSize = (
+        508
+        396)
       object labelScriptPathReminder: TJvLabel
         Left = 56
         Top = 220
@@ -2433,6 +2458,7 @@ object WizardForm: TWizardForm
         Caption = '[Path]'
         Color = clBtnFace
         FrameColor = clWindow
+        Anchors = [akLeft, akTop, akRight]
         ParentColor = False
         Transparent = True
       end
@@ -2472,12 +2498,14 @@ object WizardForm: TWizardForm
         Top = 269
         Width = 433
         Height = 108
+        Anchors = [akLeft, akTop, akRight, akBottom]
         Enabled = False
         ReadOnly = True
         TabOrder = 1
       end
     end
     object JvWizardGeneratePage: TJvWizardInteriorPage
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Generate'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -4079,6 +4107,7 @@ object WizardForm: TWizardForm
       Font.Name = 'Tahoma'
       Font.Style = []
       Image.Layout = ilBottom
+      ExplicitHeight = 395
     end
   end
 end

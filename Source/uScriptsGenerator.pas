@@ -51,8 +51,12 @@ begin
   // Create 'dcov_execute.bat'
   DCovExecuteText := TStringList.Create;
   // Fill
-  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT, [FGetPath(FSettings.ApplicationPath), FGetPath(FSettings.ProgramToAnalyze),
-    FGetPath(FSettings.ProgramMapping), FGetPath(FSettings.ReportPath)]) + FGetOutputFormatSwitches());
+  DCovExecuteText.Add(Format(DCOV_EXECUTE_FORMAT,
+                      [FGetPath(FSettings.ApplicationPath),
+                       FGetPath(FSettings.ProgramToAnalyze),
+                       FGetPath(FSettings.ProgramMapping),
+                       FGetPath(FSettings.ReportPath)]) +
+                       FGetOutputFormatSwitches());
   // Save
   DCovExecuteText.SaveToFile(FSettings.ScriptsPath + 'dcov_execute.bat');
   FreeAndNil(DCovExecuteText);

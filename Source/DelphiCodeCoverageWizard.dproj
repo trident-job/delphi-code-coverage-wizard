@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{3629547A-7FD7-40B0-BB85-86E8CFF7CCC4}</ProjectGuid>
         <MainSource>DelphiCodeCoverageWizard.dpr</MainSource>
-        <ProjectVersion>19.3</ProjectVersion>
+        <ProjectVersion>19.5</ProjectVersion>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <AppType>Application</AppType>
@@ -40,6 +40,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <SanitizedProjectName>DelphiCodeCoverageWizard</SanitizedProjectName>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -60,15 +66,15 @@
         <DCC_K>false</DCC_K>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <Icon_MainIcon>DelphiCodeCoverageWizard_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>images\wizard.ico</Icon_MainIcon>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <VerInfo_Keys>CompanyName=MH Productions;FileVersion=0.4.0.0;InternalName=;LegalCopyright=© 2014-2022 by TridenT and M. Humm;LegalTrademarks=;OriginalFilename=;ProductVersion=0.4.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <VerInfo_MinorVer>4</VerInfo_MinorVer>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <Icon_MainIcon>DelphiCodeCoverageWizard_Icon.ico</Icon_MainIcon>
@@ -83,18 +89,23 @@
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_MinorVer>3</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileVersion=0.3.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=0.3.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_MinorVer>4</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=MH Productions;FileVersion=0.4.0.0;InternalName=;LegalCopyright=© 2014-2022 by TridenT and M. Humm;LegalTrademarks=;OriginalFilename=;ProductVersion=0.4.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <BT_BuildType>Debug</BT_BuildType>
         <Icon_MainIcon>images\wizard.ico</Icon_MainIcon>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_MinorVer>4</VerInfo_MinorVer>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=MH Productions;FileVersion=0.4.0.0;InternalName=;LegalCopyright=© 2014-2022 by TridenT and M. Humm;LegalTrademarks=;OriginalFilename=;ProductVersion=0.4.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -187,91 +198,21 @@
             <UnitTesting>
                 <TestProjectName>D:\Dev\Projects\delphi-code-coverage-wizard\Test\DelphiCodeCoverageWizardTests.dproj</TestProjectName>
             </UnitTesting>
-            <Deployment Version="3">
-                <DeployFile LocalName="..\Exe\DelphiCodeCoverageWizard.exe" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>DelphiCodeCoverageWizard.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\default.txaPackage" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\fMain\default.txaPackage" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\DelphiCodeCoverageWizard\default.txaPackage" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uScriptsGenerator\default.txvpck" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\fWizard\default.txvpck" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\DelphiCodeCoverageWizard\default.txvpck" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\Use Case Diagram1.txvuse" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uApplicationController\default.txaPackage" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\default.txvpck" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\Class Diagram.txvcls" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uApplicationController\default.txvpck" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\fMain\default.txvpck" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uProjectSettings\default.txvpck" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
+            <Deployment Version="4">
+                <DeployFile LocalName="..\Exe\DelphiCodeCoverageWizard.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\Class Diagram.txvcls" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\DelphiCodeCoverageWizard\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\DelphiCodeCoverageWizard\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\fMain\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\fMain\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\fWizard\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uApplicationController\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uApplicationController\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uProjectSettings\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\uScriptsGenerator\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_DelphiCodeCoverageWizard\Use Case Diagram1.txvuse" Configuration="Debug" Class="ProjectFile"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
@@ -603,7 +544,7 @@
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
@@ -636,7 +577,7 @@
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
@@ -673,7 +614,7 @@
                     <Platform Name="iOSDevice64">
                         <Operation>0</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="OSX32">
@@ -697,13 +638,17 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="iPad_AppIcon152">
                     <Platform Name="iOSDevice64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -713,7 +658,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -723,7 +668,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -733,7 +678,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -743,7 +688,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -753,7 +698,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -763,7 +708,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -773,7 +718,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -783,7 +728,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -793,7 +738,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -803,7 +748,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -813,7 +758,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -823,7 +768,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -833,7 +778,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -843,7 +788,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -853,7 +798,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -863,7 +808,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -873,7 +818,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -883,7 +828,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -905,6 +850,10 @@
                         <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectiOSEntitlements">
                     <Platform Name="iOSDevice32">
@@ -912,6 +861,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="iOSDevice64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -923,7 +876,7 @@
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -932,7 +885,7 @@
                         <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
                         <Operation>64</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
                         <Operation>64</Operation>
                     </Platform>
@@ -944,7 +897,7 @@
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -1015,7 +968,7 @@
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimulator">
+                    <Platform Name="iOSSimARM64">
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Linux64">
@@ -1071,17 +1024,18 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimARM64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
             </Deployment>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

@@ -50,7 +50,7 @@ type
      FFileName : String;
      
   protected
-     startTime : Integer;
+     startTime : UInt32;
      dtStartTime : TDateTime;
 
      testStart : TDateTime;

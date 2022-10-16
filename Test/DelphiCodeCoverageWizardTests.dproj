@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{F3732C11-5132-4CCB-B276-65098EAB938E}</ProjectGuid>
         <MainSource>DelphiCodeCoverageWizardTests.dpr</MainSource>
-        <ProjectVersion>15.4</ProjectVersion>
+        <ProjectVersion>19.5</ProjectVersion>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <AppType>Application</AppType>
@@ -29,9 +29,22 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+        <Cfg_1_Win32>true</Cfg_1_Win32>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='CmdLine' or '$(Cfg_3)'!=''">
         <Cfg_3>true</Cfg_3>
         <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_3)'=='true') or '$(Cfg_3_Win32)'!=''">
+        <Cfg_3_Win32>true</Cfg_3_Win32>
+        <CfgParent>Cfg_3</CfgParent>
+        <Cfg_3>true</Cfg_3>
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
     </PropertyGroup>
@@ -42,9 +55,23 @@
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_4)'=='true') or '$(Cfg_4_Win32)'!=''">
+        <Cfg_4_Win32>true</Cfg_4_Win32>
+        <CfgParent>Cfg_4</CfgParent>
+        <Cfg_4>true</Cfg_4>
+        <Cfg_3>true</Cfg_3>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
@@ -65,14 +92,20 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <Icon_MainIcon>DelphiCodeCoverageWizardTests_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <Icon_MainIcon>DelphiCodeCoverageWizardTests_Icon.ico</Icon_MainIcon>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_MapFile>3</DCC_MapFile>
@@ -80,17 +113,39 @@
         <DCC_Optimize>false</DCC_Optimize>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3)'!=''">
         <DCC_Define>CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_4)'!=''">
         <DCC_Define>XML_OUTPUT;$(DCC_Define)</DCC_Define>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_4_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -99,9 +154,12 @@
         <DCCReference Include="Test_uProjectSettings.pas"/>
         <DCCReference Include="..\Source\uProjectSettings.pas"/>
         <DCCReference Include="DUnit_addon\XmlTestRunner2.pas"/>
-        <BuildConfiguration Include="XmlOutput">
-            <Key>Cfg_4</Key>
-            <CfgParent>Cfg_3</CfgParent>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
         </BuildConfiguration>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -111,12 +169,9 @@
             <Key>Cfg_3</Key>
             <CfgParent>Cfg_1</CfgParent>
         </BuildConfiguration>
-        <BuildConfiguration Include="Base">
-            <Key>Base</Key>
-        </BuildConfiguration>
-        <BuildConfiguration Include="Debug">
-            <Key>Cfg_1</Key>
-            <CfgParent>Base</CfgParent>
+        <BuildConfiguration Include="XmlOutput">
+            <Key>Cfg_4</Key>
+            <CfgParent>Cfg_3</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
     <Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
@@ -156,6 +211,10 @@
                 <Source>
                     <Source Name="MainSource">DelphiCodeCoverageWizardTests.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>
