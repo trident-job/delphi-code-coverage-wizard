@@ -29,9 +29,13 @@ The coverage report is from DelphiCodeCoverage. For further information, see the
 ## Credit ##
 A really big thanks to [Christer Fahlgren](http://christerblog.wordpress.com/) for his delphi-code-coverage release.
 
-Find more here : http://code.google.com/p/delphi-code-coverage/
+Find more here : https://sourceforge.net/projects/delphicodecoverage/
 
 ## Version history ##
+
+### v0.4 ###
+  * Improved error checking on inputs
+  * allow direct inputs in most file/path edits
 
 ### v0.3 ###
   * Added DelphiCodeCoverage V1.0RC8 new switches for output format

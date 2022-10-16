@@ -1,12 +1,18 @@
+Huhu
+**/__history
+**/__recovery
+**/Android/
+**/Android64/
+**/Win32/
+**/Win64/
 
-*.~dsk
-
+*.local
+*.identcache
 *.dsk
-
-*.tvsconfig
-
-*.map
-
-*.txaPackage
-
+*.~*
+*.stat
+Thumbs.db
 *.dcu
+*.tvsconfig
+*.txvpck
+
